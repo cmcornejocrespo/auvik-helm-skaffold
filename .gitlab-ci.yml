@@ -1,0 +1,17 @@
+stages:
+  - build
+  - stage
+  - production
+  
+build:
+  stage: build
+  script:
+    - skaffold build
+stage:
+  stage: stage
+  script:
+    - skaffold deploy -p stage
+production:
+  stage: production
+  script:
+    - skaffold deploy -p production

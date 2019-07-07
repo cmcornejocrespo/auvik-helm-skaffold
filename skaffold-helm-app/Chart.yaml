@@ -1,0 +1,4 @@
+apiVersion: v1
+description: My skaffold-helm-app Helm chart for Kubernetes
+name: skaffold-helm-app
+version: v0.1.0

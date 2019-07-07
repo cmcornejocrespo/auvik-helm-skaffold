@@ -1,0 +1,37 @@
+apiVersion: skaffold/v1beta12
+kind: Config  
+build:
+  tagPolicy:
+    envTemplate:
+      template: "{{ .IMAGE_NAME }}:latest"
+  artifacts:
+  - image: auvik/go-app
+    docker:
+      dockerfile: Dockerfile
+profiles:  
+- name: stage
+  deploy:
+    helm:
+      releases:
+      - name: skaffold-helm-app-stage
+        chartPath: skaffold-helm-app
+        namespace: stage
+        values:
+          service.internalPort: 8000 
+          env.message: I'm running in stage!
+          image.repository: auvik/go-app
+          image.tag: latest
+          ingress.domain.name: stage.com
+- name: production
+  deploy:
+    helm:
+      releases:
+      - name: skaffold-helm-app-pro
+        chartPath: skaffold-helm-app
+        namespace: production
+        values:
+          service.internalPort: 80
+          env.message: I'm running in production!
+          image.repository: auvik/go-app
+          image.tag: latest
+          ingress.domain.name: production.com
