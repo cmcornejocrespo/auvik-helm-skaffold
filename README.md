@@ -39,13 +39,12 @@ I've used [draft.sh](https://draft.sh/) to create the helm and Dockerfile boiler
 
 ```sh
 .
-├── .gitignore
-├── .gitlab-ci.yml
 ├── Dockerfile
 ├── README.md
-├── go.mod
-├── go.sum
-├── main.go
+├── app
+│   ├── go.mod
+│   ├── go.sum
+│   └── main.go
 ├── skaffold-helm-app
 │   ├── Chart.yaml
 │   ├── templates
